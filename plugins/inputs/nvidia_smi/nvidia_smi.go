@@ -146,6 +146,8 @@ func (s *SMI) genTagsFields() []metric {
 		setIfUsed("int", fields, "clocks_current_video", gpu.Clocks.Video)
 
 		setIfUsed("float", fields, "power_draw", gpu.Power.PowerDraw)
+		setIfUsed("float", fields, "gpu_power_draw", gpu.GPUPower.PowerDraw)
+		setIfUsed("float", fields, "module_power_draw", gpu.ModulePower.PowerDraw)
 		metrics = append(metrics, metric{tags, fields})
 	}
 	return metrics
@@ -199,21 +201,23 @@ type SMI struct {
 
 // GPU defines the structure of the GPU portion of the smi output.
 type GPU []struct {
-	FanSpeed     string             `xml:"fan_speed"` // int
-	Memory       MemoryStats        `xml:"fb_memory_usage"`
-	RetiredPages MemoryRetiredPages `xml:"retired_pages"`
-	RemappedRows MemoryRemappedRows `xml:"remapped_rows"`
-	PState       string             `xml:"performance_state"`
-	Temp         TempStats          `xml:"temperature"`
-	ProdName     string             `xml:"product_name"`
-	UUID         string             `xml:"uuid"`
-	ComputeMode  string             `xml:"compute_mode"`
-	Utilization  UtilizationStats   `xml:"utilization"`
-	Power        PowerReadings      `xml:"power_readings"`
-	PCI          PCI                `xml:"pci"`
-	Encoder      EncoderStats       `xml:"encoder_stats"`
-	FBC          FBCStats           `xml:"fbc_stats"`
-	Clocks       ClockStats         `xml:"clocks"`
+	FanSpeed     string              `xml:"fan_speed"` // int
+	Memory       MemoryStats         `xml:"fb_memory_usage"`
+	RetiredPages MemoryRetiredPages  `xml:"retired_pages"`
+	RemappedRows MemoryRemappedRows  `xml:"remapped_rows"`
+	PState       string              `xml:"performance_state"`
+	Temp         TempStats           `xml:"temperature"`
+	ProdName     string              `xml:"product_name"`
+	UUID         string              `xml:"uuid"`
+	ComputeMode  string              `xml:"compute_mode"`
+	Utilization  UtilizationStats    `xml:"utilization"`
+	Power        PowerReadings       `xml:"power_readings"`
+	GPUPower     GPUPowerReadings    `xml:"gpu_power_readings"`
+	ModulePower  ModulePowerReadings `xml:"module_power_readings"`
+	PCI          PCI                 `xml:"pci"`
+	Encoder      EncoderStats        `xml:"encoder_stats"`
+	FBC          FBCStats            `xml:"fbc_stats"`
+	Clocks       ClockStats          `xml:"clocks"`
 }
 
 // MemoryStats defines the structure of the memory portions in the smi output.
@@ -259,6 +263,16 @@ type UtilizationStats struct {
 
 // PowerReadings defines the structure of the power_readings portion of the smi output.
 type PowerReadings struct {
+	PowerDraw string `xml:"power_draw"` // float
+}
+
+// PowerReadings defines the structure of the gpu_power_readings portion of the smi output.
+type GPUPowerReadings struct {
+	PowerDraw string `xml:"power_draw"` // float
+}
+
+// PowerReadings defines the structure of the module_power_readings portion of the smi output.
+type ModulePowerReadings struct {
 	PowerDraw string `xml:"power_draw"` // float
 }
 
