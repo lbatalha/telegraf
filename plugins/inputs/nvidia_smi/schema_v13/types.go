@@ -278,7 +278,7 @@ type smi struct {
 		PersistenceMode  string `xml:"persistence_mode"`
 		PlatformInfo     struct {
 			ChassisSerialNumber string `xml:"chassis_serial_number"`
-			GpuFabricGuid       string `xml:"gpu_fabric_guid"`
+			GpuFabricGUID       string `xml:"gpu_fabric_guid"`
 			HostID              string `xml:"host_id"`
 			ModuleID            string `xml:"module_id"`
 			PeerType            string `xml:"peer_type"`
