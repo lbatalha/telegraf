@@ -427,7 +427,7 @@ func TestGatherValidXML(t *testing.T) {
 			},
 		},
 		{
-			name:     "RTC 3060 schema v12",
+			name:     "RTX 3060 schema v12",
 			filename: "rtx-3060-v12.xml",
 			expected: []telegraf.Metric{
 				metric.New(
@@ -477,7 +477,7 @@ func TestGatherValidXML(t *testing.T) {
 			},
 		},
 		{
-			name:     "RTC 3080 schema v12",
+			name:     "RTX 3080 schema v12",
 			filename: "rtx-3080-v12.xml",
 			expected: []telegraf.Metric{
 				metric.New(
@@ -596,7 +596,7 @@ func TestGatherValidXML(t *testing.T) {
 			},
 		},
 		{
-			name:     "RTC 3090 schema v12",
+			name:     "RTX 3090 schema v12",
 			filename: "rtx-3090-v12.xml",
 			expected: []telegraf.Metric{
 				metric.New(
@@ -775,6 +775,58 @@ func TestGatherValidXML(t *testing.T) {
 						"memory_fb_total":    19968,
 						"memory_fb_used":     12,
 						"sram_uncorrectable": 0,
+					},
+					time.Unix(1689872450, 0)),
+			},
+		},
+		{
+			name:     "RTX 3080 schema v13",
+			filename: "rtx-3080-v13.xml",
+			expected: []telegraf.Metric{
+				metric.New(
+					"nvidia_smi",
+					map[string]string{
+						"index":  "0",
+						"name":   "NVIDIA GeForce RTX 3080",
+						"arch":   "Ampere",
+						"pstate": "P2",
+						"uuid":   "GPU-19d6d965-2acc-f646-00f8-4c76979aabb4",
+						"serial": "REDACTED",
+					},
+					map[string]interface{}{
+						"clocks_current_graphics":           1950,
+						"clocks_current_memory":             9251,
+						"clocks_current_sm":                 1950,
+						"clocks_current_video":              1710,
+						"compute_mode":                      "Default",
+						"cuda_version":                      "13.2",
+						"display_active":                    "Disabled",
+						"driver_version":                    "595.58.03",
+						"encoder_stats_average_fps":         0,
+						"encoder_stats_average_latency":     0,
+						"encoder_stats_session_count":       0,
+						"fbc_stats_average_fps":             0,
+						"fbc_stats_average_latency":         0,
+						"fbc_stats_session_count":           0,
+						"fan_speed":                         0,
+						"power_draw":                        142.33,
+						"power_limit":                       320.0,
+						"memory_free":                       660,
+						"memory_reserved":                   397,
+						"memory_total":                      10240,
+						"memory_used":                       9184,
+						"ecc_errors_channel_repair_pending": "No",
+						"ecc_errors_tpc_repair_pending":     "No",
+						"pcie_link_gen_current":             4,
+						"pcie_link_width_current":           16,
+						"temperature_gpu":                   27,
+						"utilization_gpu":                   65,
+						"utilization_memory":                9,
+						"utilization_jpeg":                  0,
+						"utilization_encoder":               0,
+						"utilization_decoder":               0,
+						"utilization_ofa":                   0,
+						"vbios_version":                     "94.02.71.40.72",
 					},
 					time.Unix(1689872450, 0)),
 			},
