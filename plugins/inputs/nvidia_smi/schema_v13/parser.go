@@ -63,7 +63,8 @@ func Parse(acc telegraf.Accumulator, buf []byte) error {
 		common.SetIfUsed("int", fields, "ecc_errors_aggregate_sram_uncorrectable_secded", gpu.EccErrors.Aggregate.SramUncorrectableSecded)
 		common.SetIfUsed("str", fields, "ecc_errors_aggregate_sram_threshold_exceeded", gpu.EccErrors.Aggregate.SramThresholdExceeded)
 		common.SetIfUsed("int", fields, "ecc_errors_aggregate_sram_uncorrectable_l2", gpu.EccErrors.AggregateUncorrectableSramSources.SramL2)
-		common.SetIfUsed("int", fields, "ecc_errors_aggregate_sram_uncorrectable_microcontroller", gpu.EccErrors.AggregateUncorrectableSramSources.SramMicrocontroller)
+		common.SetIfUsed("int", fields, "ecc_errors_aggregate_sram_uncorrectable_microcontroller",
+			gpu.EccErrors.AggregateUncorrectableSramSources.SramMicrocontroller)
 		common.SetIfUsed("int", fields, "ecc_errors_aggregate_sram_uncorrectable_other", gpu.EccErrors.AggregateUncorrectableSramSources.SramOther)
 		common.SetIfUsed("int", fields, "ecc_errors_aggregate_sram_uncorrectable_pcie", gpu.EccErrors.AggregateUncorrectableSramSources.SramPcie)
 		common.SetIfUsed("int", fields, "ecc_errors_aggregate_sram_uncorrectable_sm", gpu.EccErrors.AggregateUncorrectableSramSources.SramSm)
